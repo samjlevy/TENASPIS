@@ -12,7 +12,7 @@ tic
 EBtime = toc;
 
 MakeTransientsTest('D1Movie.h5',0,starttime,endtime);
-
+!del InitClu.mat
 tic
   MNmem = MakeNeuronsTest;
 MNtime = toc;
