@@ -1,4 +1,4 @@
-function [EBtime,EBmem,MNtime,MNmem] = MeasureTenaspis(starttime, endtime)
+function [EBtime,EBmem,MNtime,MNmem,NumNeurons,NumTrans] = MeasureTenaspis(starttime, endtime)
 % start off assuming that the movie has been smoothed
 
 % measure the
@@ -16,6 +16,7 @@ MakeTransientsTest('D1Movie.h5',0,starttime,endtime);
 tic
   MNmem = MakeNeuronsTest;
 MNtime = toc;
-
+load ProcOut.mat;
+NumTrans = sum(NumTransients);
 end
 

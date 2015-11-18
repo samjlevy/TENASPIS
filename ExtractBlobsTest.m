@@ -36,8 +36,8 @@ if (nargin < 4)
 end
 oldmask = mask;
 
-curr = 1;
-for i = starttime:endtime
+
+parfor i = starttime:endtime
     
     tempFrame = h5read(file,'/Object',[1 1 i 1],[Xdim Ydim 1 1]);
     
@@ -48,13 +48,19 @@ for i = starttime:endtime
         mask = oldmask;
     end
     
-    [~,cc{curr},ccprops{curr}] = SegmentFrame(tempFrame,0,mask,thresh);
-    curr = curr + 1;
+    [~,cc{i},ccprops{i}] = SegmentFrame(tempFrame,0,mask,thresh);
+    
 
     display(['Detecting Blobs for frame ',int2str(i)]);
     m = max(m,memuse);
 end
+tcc = cc;
+clear cc;
+cc(1:(endtime-starttime+1)) = tcc(starttime:endtime);
 
+tccprops = ccprops;
+clear ccprops;
+ccprops(1:(endtime-starttime+1)) = tccprops(starttime:endtime);
 
 
 save CC.mat cc ccprops thresh mask;
