@@ -2,7 +2,7 @@ function [ output_args ] = TestDurations( input_args )
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
-DurSweepMinutes = [0.5,1,2,4,6,8,10,12,14]
+DurSweepMinutes = [0.5,1,2,4,6,8,10,12,14,16,18]
 [~,x,y,nf] = loadframe('D1movie.h5',1000);
 NumIts = 1;
 for i = 1:length(DurSweepMinutes)
